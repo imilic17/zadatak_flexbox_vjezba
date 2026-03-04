@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadatak: CSS Flexbox – Landing stranica IT agencije</title>
+    <style>
+        :root {
+            --plava:    #1a56db;
+            --tamna:    #1e293b;
+            --siva:     #f1f5f9;
+            --tekst:    #334155;
+            --naglasak: #f59e0b;
+            --zelena:   #16a34a;
+            --crvena:   #dc2626;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            color: var(--tekst);
+            background: #fff;
+            line-height: 1.6;
+        }
+
+        /* ── Zaglavlje dokumenta ── */
+        .doc-header {
+            background: var(--tamna);
+            color: #fff;
+            padding: 2rem 3rem;
+            border-bottom: 4px solid var(--plava);
+        }
+        .doc-header .meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            opacity: 0.75;
+        }
+        .doc-header h1 { font-size: 1.6rem; }
+        .doc-header .predmet { color: var(--naglasak); font-weight: 700; }
+
+        /* ── Sadržaj ── */
+        main { max-width: 960px; margin: 0 auto; padding: 2rem 2rem 4rem; }
+
+        section { margin-bottom: 2.5rem; }
+
+        h2 {
+            font-size: 1.15rem;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            color: var(--plava);
+            border-left: 4px solid var(--plava);
+            padding-left: .6rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1rem;
+            color: var(--tamna);
+            margin: 1.2rem 0 .4rem;
+        }
+
+        p { margin-bottom: .7rem; }
+
+        /* ── Info-blok ── */
+        .info-box {
+            background: var(--siva);
+            border-left: 4px solid var(--plava);
+            padding: 1rem 1.2rem;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 1rem;
+        }
+        .info-box.upozorenje { border-color: var(--naglasak); background: #fffbeb; }
+        .info-box.cilj       { border-color: var(--zelena);  background: #f0fdf4; }
+
+        /* ── Tablica zadataka ── */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .9rem;
+        }
+        th {
+            background: var(--plava);
+            color: #fff;
+            text-align: left;
+            padding: .55rem .8rem;
+        }
+        td { padding: .5rem .8rem; border-bottom: 1px solid #e2e8f0; }
+        tr:nth-child(even) td { background: var(--siva); }
+
+        .tag {
+            display: inline-block;
+            padding: .15rem .5rem;
+            border-radius: 4px;
+            font-size: .78rem;
+            font-weight: 700;
+        }
+        .tag.obavezno  { background: #fee2e2; color: var(--crvena); }
+        .tag.napredna  { background: #ede9fe; color: #7c3aed; }
+
+        /* ── Isporuka ── */
+        .isporuka-lista {
+            list-style: none;
+            padding: 0;
+        }
+        .isporuka-lista li {
+            padding: .4rem 0 .4rem 1.6rem;
+            position: relative;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+        .isporuka-lista li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--plava);
+        }
+
+        /* ── Footer dokumenta ── */
+        .doc-footer {
+            text-align: center;
+            font-size: .8rem;
+            color: #94a3b8;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        code {
+            background: var(--siva);
+            padding: .1em .35em;
+            border-radius: 3px;
+            font-size: .9em;
+            color: #7c3aed;
+        }
+
+        /* ── CSS Wireframe ── */
+        .wf-omotac {
+            border: 2px solid #94a3b8;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1.2rem 0;
+            font-size: .8rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,.08);
+        }
+
+        /* Zona = jedan odjeljak stranice */
+        .wf-zona {
+            border-bottom: 2px dashed #94a3b8;
+            position: relative;
+        }
+        .wf-zona:last-child { border-bottom: none; }
+
+        /* Etiketa u uglu koja opisuje flex kontejner */
+        .wf-etiketa {
+            position: absolute;
+            top: 6px;
+            left: 8px;
+            background: rgba(255,255,255,.85);
+            border: 1px solid #94a3b8;
+            border-radius: 4px;
+            padding: .15rem .4rem;
+            font-size: .7rem;
+            font-weight: 700;
+            color: #475569;
+            letter-spacing: .02em;
+            z-index: 1;
+        }
+
+        /* Blok koji simulira jedan UI element */
+        .wf-blok {
+            background: rgba(255,255,255,.7);
+            border: 1.5px solid #94a3b8;
+            border-radius: 5px;
+            padding: .35rem .65rem;
+            color: #475569;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .wf-blok.istaknuti {
+            background: #dbeafe;
+            border-color: var(--plava);
+            color: var(--plava);
+        }
+        .wf-blok.gumb {
+            background: var(--plava);
+            border-color: var(--plava);
+            color: #fff;
+            border-radius: 5px;
+        }
+        .wf-blok.gumb-hero {
+            background: var(--naglasak);
+            border-color: var(--naglasak);
+            color: #fff;
+            padding: .4rem 1rem;
+        }
+
+        /* Flex svojstva kao mali badge */
+        .wf-flex-info {
+            position: absolute;
+            bottom: 6px;
+            right: 8px;
+            display: flex;
+            gap: .3rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .wf-badge {
+            background: #1e293b;
+            color: #f1f5f9;
+            border-radius: 3px;
+            padding: .1rem .4rem;
+            font-size: .68rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* ─ NAVBAR ─ */
+        .wf-navbar {
+            background: #dbeafe;
+            padding: .7rem 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        .wf-nav-linkovi {
+            display: flex;
+            gap: .6rem;
+        }
+
+        /* ─ HERO ─ */
+        .wf-hero {
+            background: #e2e8f0;
+            padding: 2.5rem 1rem 2.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 130px;
+        }
+        .wf-hero-sadrzaj {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .5rem;
+            background: rgba(255,255,255,.6);
+            border: 1.5px dashed #94a3b8;
+            border-radius: 8px;
+            padding: 1rem 2.5rem;
+        }
+        .wf-hero-naslov {
+            font-weight: 900;
+            font-size: .95rem;
+            color: #1e293b;
+        }
+        .wf-hero-tekst {
+            font-size: .75rem;
+            color: #64748b;
+        }
+
+        /* ─ USLUGE ─ */
+        .wf-usluge {
+            background: #f1f5f9;
+            padding: 1.2rem 1.2rem 2rem;
+        }
+        .wf-usluge-naslov {
+            text-align: center;
+            color: #475569;
+            font-weight: 700;
+            margin-bottom: .8rem;
+            font-size: .82rem;
+        }
+        .wf-kartice {
+            display: flex;
+            gap: .8rem;
+            justify-content: center;
+        }
+        .wf-kartica {
+            flex: 1;
+            background: #fff;
+            border: 1.5px solid #94a3b8;
+            border-radius: 8px;
+            padding: .8rem .6rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .35rem;
+            min-width: 0;
+        }
+        .wf-ikona { font-size: 1.3rem; line-height: 1; }
+        .wf-kartica-naslov {
+            font-weight: 700;
+            color: #1a56db;
+            font-size: .75rem;
+            text-align: center;
+        }
+        .wf-kartica-tekst {
+            color: #94a3b8;
+            font-size: .68rem;
+            text-align: center;
+            line-height: 1.4;
+        }
+        .wf-kartica-oznaka {
+            font-size: .65rem;
+            color: #94a3b8;
+            border-top: 1px dashed #cbd5e1;
+            padding-top: .3rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ─ FOOTER ─ */
+        .wf-footer {
+            background: #cbd5e1;
+            padding: .65rem 1.2rem 1.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .wf-footer-nav {
+            display: flex;
+            gap: .6rem;
+        }
+
+        /* Strelice / legende ispod sekcija */
+        .wf-legenda {
+            margin-top: .8rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem 1.5rem;
+            font-size: .78rem;
+            color: #64748b;
+        }
+        .wf-legenda span::before {
+            content: "↳ ";
+            color: var(--plava);
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════
+     ZAGLAVLJE DOKUMENTA
+     ════════════════════════════════════════════════════════ -->
+<header class="doc-header">
+    <div class="predmet">Skriptni jezici i web programiranje</div>
+    <h1>Praktični zadatak: CSS Flexbox &mdash; Landing stranica IT agencije</h1>
+    <div class="meta">
+        <span>Razred: 3. razred, smjer: Tehničar za računalstvo</span>
+        <span>Tema: CSS Flexbox layouti</span>
+        <span>Oblik rada: Individualni rad</span>
+        <span>Trajanje: 45 minuta</span>
+    </div>
+</header>
+
+<main>
+
+    <!-- ── 1. Ishodi učenja ── -->
+    <section>
+        <h2>1. Ishodi učenja</h2>
+        <div class="info-box cilj">
+            Po završetku zadatka učenik će moći:
+            <ul style="margin-top:.5rem; padding-left:1.2rem;">
+                <li>primijeniti <code>display: flex</code> na kontejner i razumjeti ulogu flex kontejnera i flex stavki</li>
+                <li>koristiti <code>justify-content</code> i <code>align-items</code> za pozicioniranje elemenata u jednoj osi</li>
+                <li>izraditi responzivni višestupčani prikaz kartica pomoću <code>flex-wrap</code></li>
+                <li>organizirati navigacijsku traku bez pozicioniranja s <code>float</code> ili <code>position</code></li>
+                <li>strukturirati višesekcijski layout jedne web stranice primjenom Flexboxa</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ── 2. Scenarij zadatka ── -->
+    <section>
+        <h2>2. Scenarij zadatka</h2>
+        <p>
+            Zaposlen/a si kao junior web developer u IT agenciji. Voditelj projekta
+            dao ti je zadatak: izraditi <strong>landing stranicu</strong> za fiktivnu
+            IT tvrtku <em>TechNova d.o.o.</em> Tvrtka pruža usluge web razvoja,
+            mrežne administracije i IT podrške.
+        </p>
+        <p>
+            Dizajner je dostavio <strong>žičani model (wireframe)</strong> stranice
+            (vidi shemu ispod). Tvoj zadatak je implementirati ovaj layout
+            <strong>isključivo pomoću CSS Flexboxa</strong> — bez CSS Grida,
+            bez <code>float</code>, bez <code>position: absolute</code>.
+        </p>
+        <div class="info-box upozorenje">
+            <strong>Važno:</strong> Korištenje <code>float</code>, CSS Grid ili
+            apsolutnog pozicioniranja za postizanje layouta rezultirat će
+            odbitkom bodova.
+        </div>
+    </section>
+
+    <!-- ── 3. Vizualna shema (wireframe) ── -->
+    <section>
+        <h2>3. Vizualna shema (wireframe)</h2>
+        <p>Sljedeći dijagram prikazuje traženi izgled stranice:</p>
+
+        <!-- ══ CSS WIREFRAME ══════════════════════════════════════════ -->
+        <div class="wf-omotac">
+
+            <!-- 1. NAVBAR -->
+            <div class="wf-zona wf-navbar">
+                <span class="wf-etiketa">① NAVBAR — flex kontejner</span>
+                <div class="wf-blok istaknuti">TechNova</div>
+                <div class="wf-nav-linkovi">
+                    <div class="wf-blok">O nama</div>
+                    <div class="wf-blok">Usluge</div>
+                    <div class="wf-blok">Kontakt</div>
+                </div>
+                <div class="wf-blok gumb">Prijava</div>
+                <div class="wf-flex-info">
+                    <span class="wf-badge">display: flex</span>
+                    <span class="wf-badge">justify-content: space-between</span>
+                    <span class="wf-badge">align-items: center</span>
+                </div>
+            </div>
+
+            <!-- 2. HERO -->
+            <div class="wf-zona wf-hero">
+                <span class="wf-etiketa">② HERO — flex kontejner (centrira sadržaj)</span>
+                <div class="wf-hero-sadrzaj">
+                    <span class="wf-etiketa" style="position:relative;top:auto;left:auto;margin-bottom:.2rem;">③ .hero-sadrzaj — flex stupac</span>
+                    <div class="wf-hero-naslov">TechNova d.o.o.</div>
+                    <div class="wf-hero-tekst">Vaši pouzdani IT partneri</div>
+                    <div class="wf-blok gumb-hero">Saznaj više</div>
+                </div>
+                <div class="wf-flex-info">
+                    <span class="wf-badge">justify-content: center</span>
+                    <span class="wf-badge">align-items: center</span>
+                </div>
+            </div>
+
+            <!-- 3. USLUGE -->
+            <div class="wf-zona wf-usluge">
+                <span class="wf-etiketa">④ USLUGE — flex kontejner</span>
+                <div class="wf-usluge-naslov">Naše usluge</div>
+                <div class="wf-kartice">
+                    <div class="wf-kartica">
+                        <span class="wf-etiketa" style="position:relative;top:auto;left:auto;font-size:.62rem;">⑤ .kartica — flex stupac</span>
+                        <div class="wf-ikona">🌐</div>
+                        <div class="wf-kartica-naslov">Web razvoj</div>
+                        <div class="wf-kartica-tekst">Izrada web aplikacija...</div>
+                        <div class="wf-kartica-oznaka">flex-item</div>
+                    </div>
+                    <div class="wf-kartica">
+                        <span class="wf-etiketa" style="position:relative;top:auto;left:auto;font-size:.62rem;">⑤ .kartica — flex stupac</span>
+                        <div class="wf-ikona">🔗</div>
+                        <div class="wf-kartica-naslov">Mrežna admin.</div>
+                        <div class="wf-kartica-tekst">Konfiguracija mreža...</div>
+                        <div class="wf-kartica-oznaka">flex-item</div>
+                    </div>
+                    <div class="wf-kartica">
+                        <span class="wf-etiketa" style="position:relative;top:auto;left:auto;font-size:.62rem;">⑤ .kartica — flex stupac</span>
+                        <div class="wf-ikona">🛠️</div>
+                        <div class="wf-kartica-naslov">IT podrška</div>
+                        <div class="wf-kartica-tekst">Tehnička podrška...</div>
+                        <div class="wf-kartica-oznaka">flex-item</div>
+                    </div>
+                </div>
+                <div class="wf-flex-info">
+                    <span class="wf-badge">flex-wrap: wrap</span>
+                    <span class="wf-badge">justify-content: center</span>
+                    <span class="wf-badge">gap: 2rem</span>
+                </div>
+            </div>
+
+            <!-- 4. FOOTER -->
+            <div class="wf-zona wf-footer">
+                <span class="wf-etiketa">⑥ FOOTER — flex kontejner</span>
+                <div class="wf-blok">© 2024 TechNova d.o.o.</div>
+                <div class="wf-footer-nav">
+                    <span class="wf-etiketa" style="position:relative;top:auto;left:auto;">⑦ .footer-nav</span>
+                    <div class="wf-blok">Privatnost</div>
+                    <div class="wf-blok">Uvjeti</div>
+                    <div class="wf-blok">Mapa</div>
+                </div>
+                <div class="wf-flex-info">
+                    <span class="wf-badge">justify-content: space-between</span>
+                    <span class="wf-badge">align-items: center</span>
+                </div>
+            </div>
+
+        </div><!-- /wf-omotac -->
+
+        <div class="wf-legenda">
+            <span>Plavi okvir = flex kontejner</span>
+            <span>Bijeli okvir = flex stavka (flex-item)</span>
+            <span>Crni badge = CSS svojstvo koje trebaš dodati</span>
+        </div>
+    </section>
+
+    <!-- ── 4. Upute i zadaci ── -->
+    <section>
+        <h2>4. Upute i zadaci</h2>
+        <p>
+            Dobio/la si polazne datoteke <code>index.html</code> i <code>style.css</code>.
+            HTML je potpuno napisan. U CSS datoteci su označena mjesta koja
+            trebaš popuniti s odgovarajućim Flexbox svojstvima.
+        </p>
+        <p>Proučite HTML strukturu, pa za svaki kontejner dodajte tražena CSS svojstva:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Dio stranice</th>
+                    <th>CSS klasa</th>
+                    <th>Što trebate postići</th>
+                    <th>Vrsta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Navigacijska traka</td>
+                    <td><code>.navbar</code></td>
+                    <td>Logotip lijevo, linkovi u sredini, gumb desno — sve u jednom redu, vertikalno centrirano</td>
+                    <td><span class="tag obavezno">OBAVEZNO</span></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Hero sekcija</td>
+                    <td><code>.hero</code></td>
+                    <td>Sadržaj (naslov + gumb) potpuno centriran — i horizontalno i vertikalno unutar sekcije</td>
+                    <td><span class="tag obavezno">OBAVEZNO</span></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Hero sadržaj</td>
+                    <td><code>.hero-sadrzaj</code></td>
+                    <td>Naslov i gumb složeni u stupac, poravnati prema centru</td>
+                    <td><span class="tag obavezno">OBAVEZNO</span></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Mreža kartica usluga</td>
+                    <td><code>.usluge-mreza</code></td>
+                    <td>3 kartice u redu, jednako raspoređene, s prelaskom u novi red na manjim ekranima</td>
+                    <td><span class="tag obavezno">OBAVEZNO</span></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Unutar svake kartice</td>
+                    <td><code>.kartica</code></td>
+                    <td>Ikona, naslov i tekst složeni u stupac, sadržaj centriran</td>
+                    <td><span class="tag obavezno">OBAVEZNO</span></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Podnožje</td>
+                    <td><code>.footer</code></td>
+                    <td>Copyright lijevo, navigacijski linkovi desno — razmak između <em>space-between</em></td>
+                    <td><span class="tag obavezno">OBAVEZNO</span></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Footer navigacija</td>
+                    <td><code>.footer-nav</code></td>
+                    <td>Linkovi u redu s razmakom između njih</td>
+                    <td><span class="tag napredna">NAPREDNA</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="info-box" style="margin-top:1.2rem;">
+            <strong>Savjet:</strong> Pokreni datoteku u pregledniku i koristite
+            DevTools (<kbd>F12</kbd>) → <em>Inspect → Layout</em> kako biste
+            vizualizirali flex kontejnere i osi.
+        </div>
+    </section>
+
+    <!-- ── 5. Što predaješ ── -->
+    <section>
+        <h2>5. Što predaješ</h2>
+        <ul class="isporuka-lista">
+            <li>Datoteka <code>index.html</code> — HTML ne mijenjaš</li>
+            <li>Datoteka <code>style.css</code> — s popunjenim svim <code>/* TODO */</code> mjestima</li>
+            <li>Snimka ekrana (<em>screenshot</em>) gotove stranice u pregledniku</li>
+            <li><em>Napredna opcija:</em> Kratki komentar u CSS-u iznad svakog bloka — objasni zašto si odabrao/la koje vrijednosti</li>
+        </ul>
+    </section>
+
+    <footer class="doc-footer">
+        <p>Skriptni jezici i web programiranje &mdash; CSS Flexbox &mdash; Tehničar za računalstvo</p>
+        <p style="margin-top:.3rem;">Datoteke: <code>index.html</code> (polazna) &nbsp;|&nbsp; <code>style.css</code> (popuni TODO) &nbsp;|&nbsp; <code>zadatak_opis.html</code> (ovaj dokument)</p>
+    </footer>
+
+</main>
+</body>
+</html>
