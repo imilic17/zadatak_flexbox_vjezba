@@ -61,7 +61,7 @@ body {
     display: flex;
 
     /* TODO 1.5 – Postavi razmak između linkova na 2rem */
-    gap: /* ??? */ ;
+    gap: 2rem;
 }
 
 .nav-linkovi a {
@@ -98,13 +98,13 @@ body {
     min-height: 100vh;
 
     /* TODO 2.1 – Aktiviraj flexbox */
-    display: /* ??? */ ;
+    display: flex;
 
     /* TODO 2.2 – Centriraj sadržaj po VODORAVNOJ osi */
-    justify-content: /* ??? */ ;
+    justify-content: center;
 
     /* TODO 2.3 – Centriraj sadržaj po OKOMITOJ osi */
-    align-items: /* ??? */ ;
+    align-items: center;
 }
 
 .hero-sadrzaj {
@@ -114,14 +114,14 @@ body {
     padding: 2rem;
 
     /* TODO 3.1 – Složi h1, p i gumb u STUPAC (vertikalno) */
-    display: /* ??? */ ;
-    flex-direction: /* ??? */ ;
+    display: flex;
+    flex-direction: column;
 
     /* TODO 3.2 – Centriraj ih po poprečnoj osi (horizontalno) */
-    align-items: /* ??? */ ;
+    align-items: center;
 
     /* TODO 3.3 – Postavi razmak između naslova, teksta i gumba */
-    gap: /* ??? */ ;
+    gap: 1rem;
 }
 
 .hero-sadrzaj h1 { font-size: 3rem; }
@@ -166,16 +166,16 @@ body {
     margin: 0 auto;
 
     /* TODO 4.1 – Aktiviraj flexbox */
-    display: /* ??? */ ;
+    display: flex;
 
     /* TODO 4.2 – Dozvoli prelamanje u novi red (za mobilne uređaje) */
-    flex-wrap: /* ??? */ ;
+    flex-wrap: wrap;
 
     /* TODO 4.3 – Jednako rasporedi kartice duž glavne osi */
-    justify-content: /* ??? */ ;
+    justify-content: space-evenly;
 
     /* TODO 4.4 – Postavi razmak između kartica */
-    gap: /* ??? */ ;
+    gap: 3rem;
 }
 
 .kartica {
