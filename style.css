@@ -58,7 +58,7 @@ body {
     list-style: none;
 
     /* TODO 1.4 – Složi li elemente liste u RED (vodoravno) */
-    display: table-row;
+    display: flex;
 
     /* TODO 1.5 – Postavi razmak između linkova na 2rem */
     gap: 2rem ;
