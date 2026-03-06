@@ -121,7 +121,7 @@ body {
     align-items: center ;
 
     /* TODO 3.3 – Postavi razmak između naslova, teksta i gumba */
-    gap: 1em ;
+    gap: 2em ;
 }
 
 .hero-sadrzaj h1 { font-size: 3rem; }
