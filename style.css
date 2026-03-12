@@ -189,19 +189,19 @@ body {
     transition: transform 0.2s, box-shadow 0.2s;
 
     /* TODO 5.1 – Aktiviraj flexbox na kartici */
-    display: /* ??? */ ;
+    display: flex;
 
     /* TODO 5.2 – Složi ikonu, h3 i p u STUPAC */
-    flex-direction: /* ??? */ ;
+    flex-direction: column;
 
     /* TODO 5.3 – Centriraj sadržaj kartice horizontalno */
-    align-items: /* ??? */ ;
+    align-items: center;
 
     /* TODO 5.4 – Postavi tekst kartice na sredinu */
-    text-align: /* ??? */ ;
+    text-align: center;
 
     /* TODO 5.5 – Postavi razmak između ikone, naslova i teksta */
-    gap: /* ??? */ ;
+    gap: 10px;
 }
 .kartica:hover {
     transform: translateY(-4px);
@@ -239,13 +239,13 @@ body {
     font-size: 0.85rem;
 
     /* TODO 6.1 – Aktiviraj flexbox */
-    display: /* ??? */ ;
+    display: flex;
 
     /* TODO 6.2 – Razmjesti copyright lijevo, navigaciju desno */
-    justify-content: /* ??? */ ;
+    justify-content: space-between;
 
     /* TODO 6.3 – Centriraj vertikalno */
-    align-items: /* ??? */ ;
+    align-items: center;
 }
 
 .footer-copyright { color: #94a3b8; }
@@ -253,10 +253,10 @@ body {
 /* NAPREDNI ZADATAK 7 */
 .footer-nav {
     /* TODO 7.1 – Složi footer linkove u RED */
-    display: /* ??? */ ;
+    display: flex;
 
     /* TODO 7.2 – Postavi razmak između linkova */
-    gap: /* ??? */ ;
+    gap: 2rem;
 }
 
 .footer-nav a {
