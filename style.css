@@ -21,28 +21,13 @@ body {
     background-color: #ffffff;
 }
 
-
-/* ══════════════════════════════════════════════════════════
-   ZADATAK 1 — NAVIGACIJSKA TRAKA
-   ══════════════════════════════════════════════════════════
-   TRAŽENI IZGLED:
-   [ TechNova ]   [ O nama | Usluge | Kontakt ]   [ Prijava ]
-      lijevo            centralno                     desno
-   ── Sve stavke trebaju biti vertikalno centrirane ──
-   ────────────────────────────────────────────────────────── */
 .navbar {
     background-color: #1a56db;
     padding: 0 2rem;
     height: 64px;
 
-    /* TODO 1.1 – Aktiviraj flexbox na ovom elementu */
     display: flex;
-
-    /* TODO 1.2 – Rasporedi logotip, linkove i gumb duž glavne osi
-                  (logotip lijevo, gumb desno, između prostor) */
-    justify-content: space-between;
-
-    /* TODO 1.3 – Centriraj stavke po poprečnoj osi (vertikalno) */
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -53,14 +38,11 @@ body {
     letter-spacing: 0.04em;
 }
 
-/* Lista navigacijskih linkova u navbaru */
 .nav-linkovi {
     list-style: none;
 
-    /* TODO 1.4 – Složi li elemente liste u RED (vodoravno) */
     display: flex;
 
-    /* TODO 1.5 – Postavi razmak između linkova na 2rem */
     gap: 2rem;
 }
 
@@ -84,26 +66,13 @@ body {
 }
 .btn-prijava:hover { background: #e0edff; }
 
-
-/* ══════════════════════════════════════════════════════════
-   ZADATAK 2 i 3 — HERO SEKCIJA
-   ══════════════════════════════════════════════════════════
-   TRAŽENI IZGLED:
-   Velika tamna sekcija koja zauzima cijelu visinu ekrana.
-   Unutar nje sadržaj (naslov + tekst + gumb) je savršeno
-   centriran – i vodoravno i okomito.
-   ────────────────────────────────────────────────────────── */
 .hero {
     background: linear-gradient(135deg, #1e293b 0%, #1a56db 100%);
     min-height: 100vh;
 
     /* TODO 2.1 – Aktiviraj flexbox */
     display: flex;
-
-    /* TODO 2.2 – Centriraj sadržaj po VODORAVNOJ osi */
     justify-content: center;
-
-    /* TODO 2.3 – Centriraj sadržaj po OKOMITOJ osi */
     align-items: center;
 }
 
@@ -113,14 +82,11 @@ body {
     max-width: 600px;
     padding: 2rem;
 
-    /* TODO 3.1 – Složi h1, p i gumb u STUPAC (vertikalno) */
     display: flex;
     flex-direction: column;
 
-    /* TODO 3.2 – Centriraj ih po poprečnoj osi (horizontalno) */
     align-items: center;
 
-    /* TODO 3.3 – Postavi razmak između naslova, teksta i gumba */
     gap: 1rem;
 }
 
@@ -141,14 +107,7 @@ body {
 .btn-hero:hover { background: #d97706; }
 
 
-/* ══════════════════════════════════════════════════════════
-   ZADATAK 4 i 5 — SEKCIJA USLUGA
-   ══════════════════════════════════════════════════════════
-   TRAŽENI IZGLED:
-   3 kartice u jednom redu, jednako raspoređene.
-   Na manjim ekranima kartice se prelome u novi red.
-   Unutar svake kartice: ikona → naslov → tekst (stupac, centrirano).
-   ────────────────────────────────────────────────────────── */
+
 .usluge {
     padding: 5rem 2rem;
     background: #f8fafc;
@@ -165,16 +124,12 @@ body {
     max-width: 1100px;
     margin: 0 auto;
 
-    /* TODO 4.1 – Aktiviraj flexbox */
     display: flex;
 
-    /* TODO 4.2 – Dozvoli prelamanje u novi red (za mobilne uređaje) */
     flex-wrap: wrap;
 
-    /* TODO 4.3 – Jednako rasporedi kartice duž glavne osi */
     justify-content: space-evenly;
 
-    /* TODO 4.4 – Postavi razmak između kartica */
     gap: 3rem;
 }
 
@@ -188,19 +143,15 @@ body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     transition: transform 0.2s, box-shadow 0.2s;
 
-    /* TODO 5.1 – Aktiviraj flexbox na kartici */
+
     display: flex;
 
-    /* TODO 5.2 – Složi ikonu, h3 i p u STUPAC */
     flex-direction: column;
 
-    /* TODO 5.3 – Centriraj sadržaj kartice horizontalno */
     align-items: center;
 
-    /* TODO 5.4 – Postavi tekst kartice na sredinu */
     text-align: center;
 
-    /* TODO 5.5 – Postavi razmak između ikone, naslova i teksta */
     gap: 10px;
 }
 .kartica:hover {
@@ -225,37 +176,24 @@ body {
 }
 
 
-/* ══════════════════════════════════════════════════════════
-   ZADATAK 6 i 7 — PODNOŽJE (FOOTER)
-   ══════════════════════════════════════════════════════════
-   TRAŽENI IZGLED:
-   [ © 2024 TechNova d.o.o. ... ]    [ Privatnost | Uvjeti | Mapa ]
-          lijevo                                    desno
-   ────────────────────────────────────────────────────────── */
 .footer {
     background: #1e293b;
     color: #94a3b8;
     padding: 1.5rem 2rem;
     font-size: 0.85rem;
 
-    /* TODO 6.1 – Aktiviraj flexbox */
     display: flex;
 
-    /* TODO 6.2 – Razmjesti copyright lijevo, navigaciju desno */
     justify-content: space-between;
 
-    /* TODO 6.3 – Centriraj vertikalno */
     align-items: center;
 }
 
 .footer-copyright { color: #94a3b8; }
 
-/* NAPREDNI ZADATAK 7 */
 .footer-nav {
-    /* TODO 7.1 – Složi footer linkove u RED */
     display: flex;
 
-    /* TODO 7.2 – Postavi razmak između linkova */
     gap: 2rem;
 }
 
